@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using Il2Cpp;
 using Il2CppTMPro;
+using gregFramework.Core;
 using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
@@ -57,6 +58,7 @@ public sealed class HexLabelMelon : MelonMod
         _liveReloadAllowed = false;
 
         LoggerInstance.Msg("HexLabelMod waiting for Steam runtime initialization...");
+        GregCompatBridge.EnsureLoaded();
         HexviewerFeature.Initialize();
     }
 
@@ -96,7 +98,7 @@ public sealed class HexLabelMelon : MelonMod
         }
         else
         {
-            LoggerInstance.Msg("POWERED BY FRIKADELLE MODDING FRAMEWORK - DONE CHECKING STEAMID FOR PERMISSION");
+            LoggerInstance.Msg("HexLabelMod: gregCore (FrikaModdingFramework) geladen — SteamID-Check abgeschlossen.");
         }
     }
 
