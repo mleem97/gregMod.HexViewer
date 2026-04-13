@@ -1,0 +1,180 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Acornima/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Acornima.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Acornima.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Jint/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Acornima": "1.1.0"
+        },
+        "compile": {
+          "lib/net6.0/Jint.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Jint.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "gregCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Jint": "4.1.0"
+        },
+        "compile": {
+          "bin/placeholder/gregCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/gregCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Acornima/1.1.0": {
+      "sha512": "MFK/GNp09PF8H6uSkAZght553TddOejD9P1InvKWlGw6ILhmZjI+Y2xiIjGoJ73sbkeZzxwnCWZioK5Wed/J2g==",
+      "type": "package",
+      "path": "acornima/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "acornima.1.1.0.nupkg.sha512",
+        "acornima.nuspec",
+        "lib/net462/Acornima.dll",
+        "lib/net462/Acornima.xml",
+        "lib/net6.0/Acornima.dll",
+        "lib/net6.0/Acornima.xml",
+        "lib/net8.0/Acornima.dll",
+        "lib/net8.0/Acornima.xml",
+        "lib/netstandard2.0/Acornima.dll",
+        "lib/netstandard2.0/Acornima.xml",
+        "lib/netstandard2.1/Acornima.dll",
+        "lib/netstandard2.1/Acornima.xml"
+      ]
+    },
+    "Jint/4.1.0": {
+      "sha512": "4PzK4dTMOkS7NarKpAGmj3TMdlAUJ+V7w03usuLA4+ETqZnM6lt/bFlZXTtrOhLn32tjqoO803SzTMIv27EgYw==",
+      "type": "package",
+      "path": "jint/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "jint.4.1.0.nupkg.sha512",
+        "jint.nuspec",
+        "lib/net462/Jint.dll",
+        "lib/net462/Jint.xml",
+        "lib/net6.0/Jint.dll",
+        "lib/net6.0/Jint.xml",
+        "lib/net8.0/Jint.dll",
+        "lib/net8.0/Jint.xml",
+        "lib/netstandard2.0/Jint.dll",
+        "lib/netstandard2.0/Jint.xml",
+        "lib/netstandard2.1/Jint.dll",
+        "lib/netstandard2.1/Jint.xml"
+      ]
+    },
+    "gregCore/1.0.0": {
+      "type": "project",
+      "path": "../../../../gregCore/gregCore.csproj",
+      "msbuildProject": "../../../../gregCore/gregCore.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "gregCore >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\marvi\\.nuget\\packages\\": {},
+    "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregAddons\\mods\\src\\gregMod.HexViewer\\gregMod.HexViewer.csproj",
+      "projectName": "gregMod.HexViewer",
+      "projectPath": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregAddons\\mods\\src\\gregMod.HexViewer\\gregMod.HexViewer.csproj",
+      "packagesPath": "C:\\Users\\marvi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregAddons\\mods\\src\\gregMod.HexViewer\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\marvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregCore\\gregCore.csproj": {
+              "projectPath": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregCore\\gregCore.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.200"
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
+
