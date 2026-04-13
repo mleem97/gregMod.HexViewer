@@ -62,6 +62,9 @@ public static class HexViewerUI
 
     private static void UpdateJadeOverlay()
     {
+        // Ensure service is ready
+        GregHudService.Initialize();
+
         // 1. Get Targeting info from SDK
         var target = GregTargetingService.GetTargetInfo(10.0f);
         
