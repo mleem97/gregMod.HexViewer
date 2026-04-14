@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AlnORcUxGfE=",
+  "dgSpecHash": "4yB+IXWQ+nE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregAddons\\mods\\src\\gregMod.HexViewer\\gregMod.HexViewer.csproj",
+  "projectFilePath": "C:\\Users\\marvi\\source\\repos\\gregFramework\\gregMod.HexViewer\\gregMod.HexViewer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marvi\\.nuget\\packages\\acornima\\1.1.0\\acornima.1.1.0.nupkg.sha512",
     "C:\\Users\\marvi\\.nuget\\packages\\jint\\4.1.0\\jint.4.1.0.nupkg.sha512"

@@ -1,0 +1,16 @@
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.csproj.AssemblyReference.cache
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.AssemblyInfoInputs.cache
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.AssemblyInfo.cs
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.csproj.CoreCompileInputs.cache
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.sourcelink.json
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\bin\Release\net6.0\gregMod.HexViewer.deps.json
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\bin\Release\net6.0\gregMod.HexViewer.dll
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\bin\Release\net6.0\gregMod.HexViewer.pdb
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\bin\Release\net6.0\gregCore.dll
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\bin\Release\net6.0\gregCore.pdb
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod..59EAF371.Up2Date
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.dll
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\refint\gregMod.HexViewer.dll
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\gregMod.HexViewer.pdb
+C:\Users\marvi\source\repos\gregFramework\gregMod.HexViewer\obj\Release\net6.0\ref\gregMod.HexViewer.dll

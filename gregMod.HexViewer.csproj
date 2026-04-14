@@ -7,9 +7,9 @@
     <PlatformTarget>x64</PlatformTarget>
     <NoWarn>CS1701;CS1702</NoWarn>
   </PropertyGroup>
-  <Import Project="../../../../shared/gregFramework.props" />
+  <Import Project="../shared/gregFramework.props" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\gregCore\gregCore.csproj" />
+    <ProjectReference Include="..\gregCore\gregCore.csproj" />
   </ItemGroup>
 </Project>
 
