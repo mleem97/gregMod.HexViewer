@@ -12,12 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("gregMod.HexViewer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.30-pre\")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c829ae26833622061db2bf0005878bf548f0b9a")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dba7ad23aaaea5ddf714e0a8fadcb21e78933969")]
 [assembly: System.Reflection.AssemblyProductAttribute("gregMod.HexViewer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gregMod.HexViewer")]
-[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.30-pre\")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Von der MSBuild WriteCodeFragment-Klasse generiert.
-
 
