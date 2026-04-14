@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gregMod.HexViewer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dba7ad23aaaea5ddf714e0a8fadcb21e78933969")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd98b34aceacef3855fec61cda3dad6d901c5556")]
 [assembly: System.Reflection.AssemblyProductAttribute("gregMod.HexViewer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gregMod.HexViewer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

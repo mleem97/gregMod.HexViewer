@@ -15,11 +15,12 @@ namespace greg.Mods.HexViewer;
 /// Extracted from gregCore embedded code to run as an independent MelonLoader mod.
 /// Hotkeys: F1 = UI Tree, F2 = Hook Monitor, F3 = Inspector
 /// </summary>
-public class HexViewerMod : MelonMod
+public class HexViewerMod : greg.Core.Plugins.gregModBase
 {
+    public override string[] RequiredDependencies => new[] { "gregCore" };
     public static HexViewerMod Instance;
 
-    public override void OnInitializeMelon()
+    public override void OnInitializeMod()
     {
         Instance = this;
         HexViewerUI.Init();
@@ -30,9 +31,10 @@ public class HexViewerMod : MelonMod
         MelonLogger.Msg("⬡ HexViewer v1.0.0 loaded (standalone mod).");
     }
 
-    public override void OnUpdate()
+    public override void OnUpdateMod()
     {
         HexViewerUI.OnUpdate();
     }
 }
+
 
