@@ -1,0 +1,6 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+[Rr]eleases/
+*.user
+*.suo

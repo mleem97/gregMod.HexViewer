@@ -2,14 +2,34 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>gregMod.HexViewer</AssemblyName>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <RootNamespace>greg.Mods.HexViewer</RootNamespace>
     <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>disable</Nullable>
     <NoWarn>CS1701;CS1702</NoWarn>
   </PropertyGroup>
-  <Import Project="../shared/gregFramework.props" />
+
+  <!--
+    Build context: Monorepo (GameFramework-Monorepo)
+    Paths are relative from GregMods/gregMod.HexViewer/
+  -->
   <ItemGroup>
-    <ProjectReference Include="..\gregCore\gregCore.csproj" />
+    <ProjectReference Include="..\..\GregCore\gregCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MelonLoader"><HintPath>..\..\GregCore\lib\references\MelonLoader\net6\MelonLoader.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>..\..\GregCore\lib\references\MelonLoader\net6\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>..\..\GregCore\lib\references\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>..\..\GregCore\lib\references\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIElementsModule"><HintPath>..\..\gregReferences\AuxiliaryFiles\GameAssemblies\UnityEngine.UIElementsModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>
-

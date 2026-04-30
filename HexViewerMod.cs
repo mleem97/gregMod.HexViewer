@@ -1,40 +1,44 @@
 using MelonLoader;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using greg.Core;
-using greg.Sdk.Services;
 
-[assembly: MelonInfo(typeof(greg.Mods.HexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.0.30-pre", "MLeeM97 (teamGreg)")]
+[assembly: MelonInfo(typeof(greg.Mods.HexViewer.HexViewerMod), "gregMod.HexViewer", "2.0.0", "teamGreg")]
 [assembly: MelonGame("Waseku", "Data Center")]
 [assembly: MelonAdditionalDependencies("gregCore")]
 
 namespace greg.Mods.HexViewer;
 
 /// <summary>
-/// Standalone HexViewer mod — IL2CPP object inspector and telemetry overlay.
-/// Extracted from gregCore embedded code to run as an independent MelonLoader mod.
-/// Hotkeys: F1 = UI Tree, F2 = Hook Monitor, F3 = Inspector
+/// Accessibility Layer for Data Center — Hardware Inspector HUD.
+/// Displays unified object info, hex colors, and cable metadata via UI Toolkit.
 /// </summary>
-public class HexViewerMod : greg.Core.Plugins.gregModBase
+public class HexViewerMod : MelonMod
 {
-    public override string[] RequiredDependencies => new[] { "gregCore" };
-    public static HexViewerMod Instance;
-
-    public override void OnInitializeMod()
+    public override void OnInitializeMelon()
     {
-        Instance = this;
-        HexViewerUI.Init();
-
-        // Register with gregCore's ModRegistry for cross-mod discovery
-        GregModRegistry.Register("HexViewer", "1.0.0.30-pre");
-
-        MelonLogger.Msg("⬡ HexViewer v1.0.0 loaded (standalone mod).");
+        HexViewerConfig.Initialize();
+        HexViewerHud.Initialize();
+        MelonLogger.Msg("[HexViewer] v2.0.0 initialized — press F8 for config.");
     }
 
-    public override void OnUpdateMod()
+    public override void OnUpdate()
     {
-        HexViewerUI.OnUpdate();
+        if (!HexViewerConfig.Enabled.Value) return;
+
+        HexViewerTargeting.Update();
+
+        if (HexViewerTargeting.HasTarget)
+        {
+            if (HexViewerTargeting.TargetChanged)
+                HexViewerHud.Show(HexViewerTargeting.Current);
+        }
+        else
+        {
+            HexViewerHud.Hide();
+        }
+    }
+
+    public override void OnDeinitializeMelon()
+    {
+        HexViewerHud.Shutdown();
     }
 }
-
-
