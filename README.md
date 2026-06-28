@@ -36,7 +36,7 @@ The project is **standalone**: no external framework dependencies, works out of 
 
 ## Installation
 
-1. Install **MelonLoader** (v0.6+) for **Data Center**
+1. Install **MelonLoader** (v0.7.2+) for **Data Center**
 2. Copy the release DLL into the mod folder:
 
    ```text
@@ -84,7 +84,10 @@ File: `UserData/hexposition.cfg` (created on first start).
 
 ## Dependencies
 
-- **MelonLoader** (v0.6+)
+- **MelonLoader** (v0.7.2+)
+
+### Build only
+
 - **Il2CppInterop**
 - **Harmony**
 - Unity / game interop assemblies from the local Data Center installation
