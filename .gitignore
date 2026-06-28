@@ -2,5 +2,6 @@
 [Bb]in/
 [Oo]bj/
 [Rr]eleases/
+.vs/
 *.user
 *.suo
