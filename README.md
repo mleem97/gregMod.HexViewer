@@ -99,6 +99,8 @@ Requirements:
 - .NET 6 SDK
 - local Data Center / MelonLoader installation
 
+> **Note:** This mod was built on Linux using Proton-GE 10-34. The `references/` directory contains the required game and MelonLoader DLLs. When building on a different system, adjust the `<HintPath>` entries in the `.csproj` to point to your local MelonLoader and game interop assemblies.
+
 Build:
 
 ```bash
