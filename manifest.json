@@ -1,8 +1,6 @@
 {
-    "author":  "teamGreg",
-    "name":  "gregMod.HexViewer",
-    "version":  "0.5.0",
-    "dependencies":  [
-                         "gregCore"
-                     ]
+    "author": "mleem97",
+    "name": "gregMod.HexViewer",
+    "version": "1.0.0",
+    "dependencies": []
 }
