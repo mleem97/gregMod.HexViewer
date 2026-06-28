@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,13 +35,13 @@ public sealed class HexViewerMod : MelonMod
     {
         _config = HexPositionConfig.CreateDefault();
         HexviewerFeature.Initialize();
-        MelonLogger.Msg("[HexViewer] v1.0.0 — F1 HUD, F2 list, Ctrl+F1 config reload.");
+        HexviewerFeature.SetHudEnabled(true);
+        MelonLogger.Msg("[HexViewer] v1.0.0 — F2 list, Ctrl+F1 config reload.");
     }
 
     public override void OnGUI()
     {
         if (!_isFullyInitialized) return;
-        HexviewerFeature.SetHudEnabled(true);
         HexviewerFeature.OnGui();
     }
 

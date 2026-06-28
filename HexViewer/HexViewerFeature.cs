@@ -10,6 +10,7 @@ internal static class HexviewerFeature
 {
     private static bool _visible;
     private static bool _hudEnabled;
+    private static bool _hudHasTarget;
     private static Vector2 _scroll;
     private static readonly List<CableColorEntry> _entries = new();
     private static bool _colorblindMode;
@@ -17,8 +18,18 @@ internal static class HexviewerFeature
     private static string _hudLine = "—";
     private static string _hudDetail = "";
 
+    private static Texture2D _texBg;
+    private static Texture2D _texBorder;
+
+    private static readonly Color ColBg = new(10f / 255f, 12f / 255f, 16f / 255f, 1f);
+    private static readonly Color ColBorder = new(30f / 255f, 36f / 255f, 46f / 255f, 1f);
+    private static readonly Color ColTitle = new(80f / 255f, 220f / 255f, 210f / 255f, 1f);
+    private static readonly Color ColMuted = new(154f / 255f, 164f / 255f, 178f / 255f, 1f);
+    private static readonly Color ColPortTag = new(0f / 255f, 133f / 255f, 120f / 255f, 1f);
+
     public static void Initialize()
     {
+        EnsureTextures();
     }
 
     public static void Shutdown()
@@ -38,6 +49,23 @@ internal static class HexviewerFeature
         RefreshHudLine();
     }
 
+    private static void EnsureTextures()
+    {
+        if (_texBg != null) return;
+
+        _texBg = MakeTexture(ColBg);
+        _texBorder = MakeTexture(ColBorder);
+    }
+
+    private static Texture2D MakeTexture(Color c)
+    {
+        var t = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        t.SetPixel(0, 0, c);
+        t.Apply();
+        UnityEngine.Object.DontDestroyOnLoad(t);
+        return t;
+    }
+
     private static void RefreshHudLine()
     {
         try
@@ -45,7 +73,8 @@ internal static class HexviewerFeature
             if (HexTargetResolver.TryGetAimedColor(out var aimHex, out var aimDetailSuffix))
             {
                 _hudLine = aimHex;
-                _hudDetail = $"Anvisiert · {aimDetailSuffix}";
+                _hudDetail = aimDetailSuffix ?? "";
+                _hudHasTarget = true;
                 UpdateHeldLine();
                 return;
             }
@@ -53,19 +82,22 @@ internal static class HexviewerFeature
             if (HeldCableKindResolver.TryGetHeldItemHex(out var heldHex, out var heldKind))
             {
                 _hudLine = heldHex;
-                _hudDetail = $"In der Hand · {heldKind}";
+                _hudDetail = heldKind ?? "";
+                _hudHasTarget = true;
                 UpdateHeldLine();
                 return;
             }
 
             _hudLine = "—";
             _hudDetail = "";
+            _hudHasTarget = false;
             UpdateHeldLine();
         }
         catch (Exception ex)
         {
             _hudLine = "?";
             _hudDetail = ex.Message;
+            _hudHasTarget = true;
         }
     }
 
@@ -115,7 +147,7 @@ internal static class HexviewerFeature
 
     public static void OnGui()
     {
-        if (_hudEnabled)
+        if (_hudEnabled && _hudHasTarget)
             DrawHud();
 
         if (!_visible)
@@ -175,42 +207,110 @@ internal static class HexviewerFeature
 
     private static void DrawHud()
     {
+        EnsureTextures();
+
         const float margin = 10f;
-        const float width = 320f;
+        const float width = 340f;
+
+        var hasPortTag = TryExtractPortTag(_hudDetail, out _);
         var hexLineH = _colorblindMode ? 32f : 26f;
-        var h = 8f + 18f + hexLineH + 18f;
+        var tagLineH = hasPortTag ? 22f : 0f;
+        var h = 12f + 16f + 6f + hexLineH + 4f + 14f + (hasPortTag ? 6f + tagLineH : 0f) + 10f;
 
         var x = Screen.width - width - margin;
         var y = margin;
 
-        GUI.Box(new Rect(x, y, width, h), "");
+        var bgRect = new Rect(x, y, width, h);
+        GUI.DrawTexture(bgRect, _texBg);
+        DrawBorder(bgRect, _texBorder);
 
         var titleStyle = new GUIStyle
         {
-            fontSize = 13,
+            fontSize = 12,
             fontStyle = FontStyle.Bold,
             alignment = TextAnchor.UpperRight,
-            normal = { textColor = new Color(0.95f, 0.98f, 1f, 1f) }
+            normal = { textColor = ColTitle }
         };
+
+        var hexSwatch = Color.white;
+        var hasHex = HexColorUtil.TryHexToColor(_hudLine, out var swatch);
+        if (hasHex) hexSwatch = swatch;
 
         var hexStyle = new GUIStyle
         {
             fontSize = _colorblindMode ? 22 : 18,
             fontStyle = FontStyle.Bold,
             alignment = TextAnchor.MiddleRight,
-            normal = { textColor = HexColorUtil.TryHexToColor(_hudLine, out var swatch) ? swatch : Color.white }
+            normal = { textColor = hexSwatch }
         };
 
         var detailStyle = new GUIStyle
         {
             fontSize = 11,
             alignment = TextAnchor.LowerRight,
-            normal = { textColor = new Color(0.85f, 0.9f, 0.95f, 1f) }
+            normal = { textColor = ColMuted }
+        };
+
+        var portTagStyle = new GUIStyle
+        {
+            fontSize = 13,
+            fontStyle = FontStyle.Bold,
+            alignment = TextAnchor.MiddleRight,
+            normal = { textColor = ColPortTag }
         };
 
         var line = string.IsNullOrEmpty(_hudLine) ? "—" : _hudLine;
-        GUI.Label(new Rect(x + 8, y + 6, width - 16, 18), "Hexviewer", titleStyle);
-        GUI.Label(new Rect(x + 8, y + 26, width - 16, hexLineH), line, hexStyle);
-        GUI.Label(new Rect(x + 8, y + h - 20, width - 16, 16), _hudDetail, detailStyle);
+        var pad = 10f;
+        var textW = width - pad * 2;
+
+        GUI.Label(new Rect(x + pad, y + 8, textW, 16), "Hexviewer", titleStyle);
+        GUI.Label(new Rect(x + pad, y + 26, textW, hexLineH), line, hexStyle);
+
+        var detailY = y + 26f + hexLineH + 2f;
+        GUI.Label(new Rect(x + pad, detailY, textW, 14), _hudDetail, detailStyle);
+
+        if (hasPortTag)
+        {
+            var tagY = detailY + 16f;
+            var tagText = ExtractPortTag(_hudDetail);
+            GUI.Label(new Rect(x + pad, tagY, textW, tagLineH), tagText, portTagStyle);
+        }
+    }
+
+    private static void DrawBorder(Rect r, Texture2D tex)
+    {
+        GUI.DrawTexture(new Rect(r.x, r.y, r.width, 1), tex);
+        GUI.DrawTexture(new Rect(r.x, r.yMax - 1, r.width, 1), tex);
+        GUI.DrawTexture(new Rect(r.x, r.y, 1, r.height), tex);
+        GUI.DrawTexture(new Rect(r.xMax - 1, r.y, 1, r.height), tex);
+    }
+
+    private static bool TryExtractPortTag(string detail, out string port)
+    {
+        port = null;
+        if (string.IsNullOrEmpty(detail))
+            return false;
+
+        var idx = detail.IndexOf("·", StringComparison.Ordinal);
+        if (idx < 0)
+            return false;
+
+        var after = detail.Substring(idx + 1).Trim();
+        if (after.Equals("RJ", StringComparison.OrdinalIgnoreCase)
+            || after.Equals("SFP", StringComparison.OrdinalIgnoreCase)
+            || after.Equals("QSFP", StringComparison.OrdinalIgnoreCase))
+        {
+            port = after.ToUpperInvariant();
+            return true;
+        }
+
+        return false;
+    }
+
+    private static string ExtractPortTag(string detail)
+    {
+        if (TryExtractPortTag(detail, out var port))
+            return port;
+        return "";
     }
 }

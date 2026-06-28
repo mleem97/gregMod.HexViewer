@@ -1,8 +1,19 @@
 # Build outputs
 [Bb]in/
 [Oo]bj/
+
+# Release artifacts
 [Rr]eleases/
+
+# IDE
 .vs/
 *.user
 *.suo
-bin/\nobj/
+*.csproj.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
