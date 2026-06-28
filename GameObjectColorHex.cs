@@ -1,7 +1,7 @@
 using Il2Cpp;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 /// <summary>Shared hex resolution for <see cref="CableSpinner"/> and <see cref="Rack"/> (world + HUD).</summary>
 internal static class GameObjectColorHex

@@ -4,7 +4,7 @@ using Il2Cpp;
 using Il2CppTMPro;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 /// <summary>
 /// Port type on <see cref="CableSpinner"/> and Normal vs Colored on <see cref="Rack"/> via TMP + reflection.

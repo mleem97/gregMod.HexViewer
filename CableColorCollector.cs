@@ -8,7 +8,7 @@ using System.Text.Json;
 using Il2Cpp;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 internal readonly struct CableColorEntry
 {

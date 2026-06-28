@@ -1,7 +1,7 @@
 using Il2Cpp;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 /// <summary>Raycast from the main camera for cable spinner / rack color under the crosshair.</summary>
 internal static class HexTargetResolver

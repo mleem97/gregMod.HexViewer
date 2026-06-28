@@ -4,7 +4,7 @@ using MelonLoader;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 internal static class HexviewerFeature
 {
@@ -18,6 +18,10 @@ internal static class HexviewerFeature
     private static string _hudDetail = "";
 
     public static void Initialize()
+    {
+    }
+
+    public static void Shutdown()
     {
     }
 

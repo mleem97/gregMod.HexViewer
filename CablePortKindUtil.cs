@@ -1,6 +1,6 @@
 using System;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 /// <summary>RJ / SFP / QSFP from UI text or item strings (same rules as held patch cables).</summary>
 internal static class CablePortKindUtil

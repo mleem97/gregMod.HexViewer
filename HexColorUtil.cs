@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 internal static class HexColorUtil
 {

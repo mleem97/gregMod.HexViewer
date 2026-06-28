@@ -3,7 +3,7 @@ using System.Reflection;
 using Il2Cpp;
 using UnityEngine;
 
-namespace FMF.HexLabelMod;
+namespace GregModHexViewer;
 
 /// <summary>
 /// Resolves RJ / SFP / QSFP for the cable item the player is holding, using
