@@ -78,15 +78,15 @@ bin/Release/net6.0/gregMod.HexViewer.dll
 
 ```
 gregMod.HexViewer/
-├── HexViewer/                  # Source code
-│   ├── HexViewerMod.cs         # MelonLoader entry point
-│   ├── HexViewerFeature.cs     # HUD overlay (Jade-style)
-│   ├── HexTargetResolver.cs    # Crosshair raycast targeting
+├── src/                       # Source code
+│   ├── HexViewerMod.cs        # MelonLoader entry point
+│   ├── HexViewerFeature.cs    # HUD overlay (Jade-style)
+│   ├── HexTargetResolver.cs   # Crosshair raycast targeting
 │   ├── HeldCableKindResolver.cs# Held item hex and port resolution
-│   ├── GameObjectColorHex.cs   # Hex extraction from CableSpinner and Rack
+│   ├── GameObjectColorHex.cs  # Hex extraction from CableSpinner and Rack
 │   ├── GameObjectKindResolver.cs# Port type and rack variant detection
-│   ├── CablePortKindUtil.cs    # RJ / SFP / QSFP classification
-│   └── HexColorUtil.cs         # Color ↔ hex conversion utilities
+│   ├── CablePortKindUtil.cs   # RJ / SFP / QSFP classification
+│   └── HexColorUtil.cs        # Color ↔ hex conversion utilities
 ├── references/                 # Game & MelonLoader interop DLLs
 ├── gregMod.HexViewer.csproj    # Project file
 ├── LICENSE                     # Apache 2.0

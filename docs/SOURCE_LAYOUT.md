@@ -1,11 +1,11 @@
 # Source layout
 
-All source lives under `HexViewer/` with root namespace **`GregModHexViewer`**. No sub-namespaces.
+All source lives under `src/` with root namespace **`GregModHexViewer`**. No sub-namespaces.
 
 ## Tree
 
 ```
-HexViewer/
+src/
 ├── HexViewerMod.cs            # MelonLoader entry point (MelonMod)
 ├── HexViewerFeature.cs        # HUD overlay + F2 color list window
 ├── HexTargetResolver.cs       # Raycast from camera for aimed-at cable/rack
