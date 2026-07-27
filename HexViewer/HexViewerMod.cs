@@ -2,7 +2,7 @@ using Il2Cpp;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.5", "mleem97")]
+[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.6", "mleem97")]
 [assembly: MelonGame("Waseku", "Data Center")]
 
 namespace GregModHexViewer;
