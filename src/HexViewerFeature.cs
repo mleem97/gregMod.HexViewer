@@ -16,16 +16,44 @@ internal static class HexviewerFeature
     private static string _heldLine = "Held: —";
     private static string _hudLine = "—";
     private static string _hudDetail = "";
+    private static float _nextHudRefreshAt;
+    private const float HudRefreshIntervalSeconds = 0.10f;
 
     private static Texture2D _texBg;
     private static Texture2D _texBorder;
     private static Texture2D _texWhite;
+    private static Key _toggleKey = Key.F2;
+
+    public static string ToggleKeyLabel
+    {
+        get { try { return _toggleKey.ToString(); } catch { return "F2"; } }
+    }
+
+    public static bool IsVisible => _visible;
+
+    public static void ConfigureToggleKey(string raw)
+    {
+        try
+        {
+            if (Enum.TryParse<Key>(raw, true, out var k) && k != Key.None)
+                _toggleKey = k;
+            else
+                MelonLogger.Warning($"[HexViewer] Unknown ToggleKey '{raw}', defaulting to F2.");
+        }
+        catch { }
+    }
+
+    public static void ToggleVisibility()
+    {
+        _visible = !_visible;
+        if (_visible) RefreshList();
+    }
 
     private static readonly Color ColBg = new(10f / 255f, 12f / 255f, 16f / 255f, 1f);
     private static readonly Color ColBorder = new(30f / 255f, 36f / 255f, 46f / 255f, 1f);
-    private static readonly Color ColTitle = new(80f / 255f, 220f / 255f, 210f / 255f, 1f);
+    private static readonly Color ColTitle = new(135f / 255f, 206f / 255f, 235f / 255f, 1f);
     private static readonly Color ColMuted = new(154f / 255f, 164f / 255f, 178f / 255f, 1f);
-    private static readonly Color ColPortTag = new(0f / 255f, 133f / 255f, 120f / 255f, 1f);
+    private static readonly Color ColPortTag = new(10f / 255f, 162f / 255f, 192f / 255f, 1f);
 
     public static void Initialize()
     {
@@ -42,6 +70,8 @@ internal static class HexviewerFeature
     public static void UpdateHud()
     {
         if (!_hudEnabled) return;
+        if (Time.unscaledTime < _nextHudRefreshAt) return;
+        _nextHudRefreshAt = Time.unscaledTime + HudRefreshIntervalSeconds;
         RefreshHudLine();
     }
 
@@ -102,11 +132,13 @@ internal static class HexviewerFeature
         var kb = Keyboard.current;
         if (kb == null) return;
 
-        if (kb.f2Key.wasPressedThisFrame)
+        try
         {
-            _visible = !_visible;
-            if (_visible) RefreshList();
+            var ctrl = kb[_toggleKey];
+            if (ctrl != null && ctrl.wasPressedThisFrame)
+                ToggleVisibility();
         }
+        catch { }
     }
 
     private static void RefreshList()
