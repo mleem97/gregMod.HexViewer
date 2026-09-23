@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.7
+
+- Fixed F2 color list: `DrawColorList` threw `NotSupportedException` on
+  `GUILayout.BeginScrollView` (unstripped Unity GUI path fails on this game build).
+  Replaced with a SafeScroll pattern (viewport rect + try/catch `GUI.BeginScrollView`,
+  manual group + wheel fallback) matching BetterShop.
+
 ## v1.0.5
 
 - Jade-style HUD overlay: opaque dark panel in the top-right corner
