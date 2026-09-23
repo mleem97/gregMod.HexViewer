@@ -47,6 +47,13 @@ internal static class HexviewerFeature
     {
         _visible = !_visible;
         if (_visible) RefreshList();
+        try { if (GregHost.HasCore) ReportOpenState(); } catch { /* best-effort */ }
+    }
+
+    // Separate Methode (JIT-Trennung): meldet den Panel-Status ans F1-Hub.
+    private static void ReportOpenState()
+    {
+        try { gregCore.UI.GregMenuRegistry.SetOpen("hexviewer", _visible); } catch { /* best-effort */ }
     }
 
     private static readonly Color ColBg = new(10f / 255f, 12f / 255f, 16f / 255f, 1f);
@@ -290,7 +297,13 @@ internal static class HexviewerFeature
         if (GUILayout.Button("Close", GUILayout.Width(120))) _visible = false;
         GUILayout.EndHorizontal();
 
-        _scroll = GUILayout.BeginScrollView(_scroll, GUILayout.Height(220));
+        var rowH = 22f;
+        var contentH = Mathf.Max(rowH, _entries.Count * rowH + 4f);
+        var listW = w - 24f;
+        var listRect = GUILayoutUtility.GetRect(listW, 220f, GUILayout.ExpandWidth(true), GUILayout.Height(220f));
+        var contentRect = new Rect(0f, 0f, listW - 16f, contentH);
+
+        _scroll = SafeBeginScroll(listRect, _scroll, contentRect);
         foreach (var e in _entries)
         {
             GUILayout.BeginHorizontal();
@@ -306,8 +319,80 @@ internal static class HexviewerFeature
             GUILayout.EndHorizontal();
         }
 
-        GUILayout.EndScrollView();
+        SafeEndScroll();
         GUILayout.EndArea();
+    }
+
+    private static bool _scrollManual;
+    private static bool _scrollFallbackLogged;
+    private static bool _scrollManualFrame;
+    private static Rect _scrollViewport;
+    private static Rect _scrollContent;
+
+    private static Vector2 SafeBeginScroll(Rect viewport, Vector2 scroll, Rect content)
+    {
+        if (!_scrollManual)
+        {
+            try
+            {
+                _scrollManualFrame = false;
+                return GUI.BeginScrollView(viewport, scroll, content);
+            }
+            catch (Exception ex)
+            {
+                _scrollManual = true;
+                if (!_scrollFallbackLogged)
+                {
+                    _scrollFallbackLogged = true;
+                    MelonLogger.Warning(
+                        "[HexViewer] GUI.BeginScrollView unavailable (" + ex.GetType().Name
+                        + "); using manual scroll fallback.");
+                }
+            }
+        }
+
+        _scrollManualFrame = true;
+        _scrollViewport = viewport;
+        _scrollContent = content;
+
+        float maxY = Mathf.Max(0f, content.height - viewport.height);
+        if (Event.current != null
+            && Event.current.type == EventType.ScrollWheel
+            && viewport.Contains(Event.current.mousePosition))
+        {
+            scroll.y = Mathf.Clamp(scroll.y + Event.current.delta.y * 48f, 0f, maxY);
+            Event.current.Use();
+        }
+
+        scroll.y = Mathf.Clamp(scroll.y, 0f, maxY);
+        GUI.BeginGroup(viewport);
+        GUI.BeginGroup(new Rect(0f, -scroll.y, content.width, content.height));
+        return scroll;
+    }
+
+    private static void SafeEndScroll()
+    {
+        if (_scrollManualFrame)
+        {
+            GUI.EndGroup();
+            GUI.EndGroup();
+            _scrollManualFrame = false;
+            return;
+        }
+
+        try
+        {
+            GUI.EndScrollView();
+        }
+        catch (Exception ex)
+        {
+            if (!_scrollFallbackLogged)
+            {
+                _scrollFallbackLogged = true;
+                MelonLogger.Warning(
+                    "[HexViewer] GUI.EndScrollView failed (" + ex.GetType().Name + "); continuing.");
+            }
+        }
     }
 
     private static void DrawBorder(Rect r, Texture2D tex)

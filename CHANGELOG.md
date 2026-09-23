@@ -4,6 +4,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/de/1.0.0/). Version: siehe
 
 ## [Unreleased]
 
+### Fixed
+
+- F2-Panel: `DrawColorList` erzeugte `NotSupportedException` (`GUILayout.BeginScrollView` /
+  unstrip-fail) → manuelle Scroll-Fallback wie BetterShop SafeScroll (Viewport-Rect +
+  `GUI.BeginScrollView` try/catch → Groups + Wheel). Version 1.0.7.
+
 ### Added
 
 - Konfigurierbarer Toggle-Hotkey (`ToggleKey`-Pref, Default F2), Mod-Vertrag, Tasten-HUD-Eintrag und Oeffner fuers F1-Hub (nur mit gregCore).

@@ -2,7 +2,7 @@ using Il2Cpp;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.6", "mleem97")]
+[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.7", "mleem97")]
 [assembly: MelonGame("Waseku", "Data Center")]
 
 namespace GregModHexViewer;
@@ -23,7 +23,7 @@ public sealed class HexViewerMod : MelonMod
         catch { }
         HexviewerFeature.Initialize();
         HexviewerFeature.SetHudEnabled(true);
-        MelonLogger.Msg($"[HexViewer] v1.0.6 loaded. {HexviewerFeature.ToggleKeyLabel} = HexViewer panel.");
+        MelonLogger.Msg($"[HexViewer] v1.0.7 loaded. {HexviewerFeature.ToggleKeyLabel} = HexViewer panel.");
         if (GregHost.HasCore)
         {
             try { RegisterCoreExtras(); } catch { }
@@ -37,12 +37,14 @@ public sealed class HexViewerMod : MelonMod
         try
         {
             gregCore.Core.Mods.GregModRegistry.Register(
-                "gregMod.HexViewer", "HexViewer", "1.0.6",
+                "gregMod.HexViewer", "HexViewer", "1.0.7",
                 new string[] { "hexviewer" });
             gregCore.UI.GregHudRegistry.Register("hexviewer",
                 HexviewerFeature.ToggleKeyLabel, "Hex");
             gregCore.UI.GregMenuRegistry.RegisterOpener("hexviewer",
                 () => HexviewerFeature.ToggleVisibility());
+            gregCore.UI.GregMenuRegistry.RegisterCloser("hexviewer",
+                () => { try { if (HexviewerFeature.IsVisible) HexviewerFeature.ToggleVisibility(); } catch { /* best-effort */ } });
         }
         catch (System.Exception ex)
         {
