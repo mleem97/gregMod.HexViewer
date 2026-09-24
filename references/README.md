@@ -1,5 +1,5 @@
 # references — gregMod.HexViewer
 
-Externe Referenzen, Quellen und weiterführendes Material.
+External references, sources, and further material.
 
-Zurück: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).
+Back: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).

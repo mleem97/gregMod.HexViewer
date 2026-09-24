@@ -1,5 +1,5 @@
 # sponsors — gregMod.HexViewer
 
-Sponsoring und Unterstützer dieses Repos.
+Sponsorship and supporters of this repo.
 
-Zurück: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).
+Back: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).

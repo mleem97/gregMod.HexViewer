@@ -1,5 +1,5 @@
 # tests — gregMod.HexViewer
 
-Tests, Fixtures und Test-Dokumentation.
+Tests, fixtures, and test documentation.
 
-Zurück: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).
+Back: [README.md](../README.md) · Docs: [docs/INDEX.md](../docs/INDEX.md).
