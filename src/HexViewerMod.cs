@@ -1,6 +1,7 @@
 using Il2Cpp;
 using MelonLoader;
 using System;
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ModCoverage.Tests")]
 
 [assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "2.0.0", "mleem97")]
 [assembly: MelonGame("Waseku", "Data Center")]
