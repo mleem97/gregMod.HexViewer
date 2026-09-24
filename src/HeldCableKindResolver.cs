@@ -11,6 +11,7 @@ namespace GregModHexViewer;
 /// </summary>
 internal static class HeldCableKindResolver
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     public static string Resolve()
     {
         try
@@ -57,6 +58,7 @@ internal static class HeldCableKindResolver
     /// Rack, cable reel (spinner), or patch cable in hand — returns a display label and hex when possible.
     /// Labels include port (RJ/SFP/QSFP) for reels and Normal/Colored for racks when detected.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     public static bool TryGetHeldItemHex(out string hex, out string kindLabel)
     {
         hex = null;
@@ -109,6 +111,7 @@ internal static class HeldCableKindResolver
         return false;
     }
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     private static bool TryGetHexFromHeldObject(object val, out string hex, out string kindLabel)
     {
         hex = null;
@@ -172,6 +175,7 @@ internal static class HeldCableKindResolver
         return false;
     }
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     public static bool TryGetHeldCableHex(out string hex)
     {
         hex = null;
@@ -220,6 +224,7 @@ internal static class HeldCableKindResolver
         }
     }
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     private static bool TryHexFromObject(object o, out string hex)
     {
         hex = null;
@@ -264,6 +269,7 @@ internal static class HeldCableKindResolver
         return false;
     }
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     private static string ClassifyObject(object o)
     {
         if (o is string s)

@@ -6,6 +6,7 @@ namespace GregModHexViewer;
 /// <summary>Shared hex resolution for <see cref="CableSpinner"/> and <see cref="Rack"/> (world + HUD).</summary>
 internal static class GameObjectColorHex
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     public static bool TryGetSpinnerHex(CableSpinner spinner, out string hex)
     {
         hex = null;
@@ -40,6 +41,7 @@ internal static class GameObjectColorHex
         return false;
     }
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Headless-testable part covered; game-bound remainder needs running game (Il2Cpp/Unity/Melon runtime).")]
     public static bool TryGetRackHex(Rack rack, out string hex)
     {
         hex = null;
