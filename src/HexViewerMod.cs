@@ -41,10 +41,8 @@ public sealed class HexViewerMod : MelonMod
                 new string[] { "hexviewer" });
             gregCore.UI.GregHudRegistry.Register("hexviewer",
                 HexviewerFeature.ToggleKeyLabel, "Hex");
-            gregCore.UI.GregMenuRegistry.RegisterOpener("hexviewer",
-                () => HexviewerFeature.ToggleVisibility());
-            gregCore.UI.GregMenuRegistry.RegisterCloser("hexviewer",
-                () => { try { if (HexviewerFeature.IsVisible) HexviewerFeature.ToggleVisibility(); } catch { /* best-effort */ } });
+            gregCore.UI.GregMenuBinding.BindToggle("hexviewer",
+                HexviewerFeature.ToggleVisibility, () => HexviewerFeature.IsVisible);
         }
         catch (System.Exception ex)
         {
