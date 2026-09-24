@@ -1,18 +1,31 @@
 using Il2Cpp;
 using MelonLoader;
-using UnityEngine;
+using System;
 
-[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.7", "mleem97")]
+[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.8", "mleem97")]
 [assembly: MelonGame("Waseku", "Data Center")]
 
 namespace GregModHexViewer;
 
+// gregMod.HexViewer 1.0.8+: hard dependency on gregCore (UI fully central).
+// No standalone fallback, no GregHost probe — fail fast without the DLL.
 public sealed class HexViewerMod : MelonMod
 {
+    private const string CoreProbeType = "gregCore.UI.GregNotificationManager, gregCore";
     private bool _initialized;
+    private bool _disabled;
 
     public override void OnInitializeMelon()
     {
+        bool hasCore = false;
+        try { hasCore = Type.GetType(CoreProbeType) != null; } catch { }
+        if (!hasCore)
+        {
+            LoggerInstance.Error("[HexViewer] gregCore not found — hard dependency, staying disabled. Put gregCore.dll in Mods/.");
+            _disabled = true;
+            return;
+        }
+
         try
         {
             var cat = MelonPreferences.CreateCategory("HexViewer");
@@ -23,21 +36,16 @@ public sealed class HexViewerMod : MelonMod
         catch { }
         HexviewerFeature.Initialize();
         HexviewerFeature.SetHudEnabled(true);
-        MelonLogger.Msg($"[HexViewer] v1.0.7 loaded. {HexviewerFeature.ToggleKeyLabel} = HexViewer panel.");
-        if (GregHost.HasCore)
-        {
-            try { RegisterCoreExtras(); } catch { }
-        }
+        MelonLogger.Msg($"[HexViewer] v1.0.8 loaded (gregCore UI). {HexviewerFeature.ToggleKeyLabel} = HexViewer panel.");
+        try { RegisterCoreExtras(); } catch { }
     }
 
-    // Mod contract + key HUD + opener for F1 hub. Call only with gregCore
-    // (own method for JIT split without gregCore DLL).
     private void RegisterCoreExtras()
     {
         try
         {
             gregCore.Core.Mods.GregModRegistry.Register(
-                "gregMod.HexViewer", "HexViewer", "1.0.7",
+                "gregMod.HexViewer", "HexViewer", "1.0.8",
                 new string[] { "hexviewer" });
             gregCore.UI.GregHudRegistry.Register("hexviewer",
                 HexviewerFeature.ToggleKeyLabel, "Hex");
@@ -50,14 +58,9 @@ public sealed class HexViewerMod : MelonMod
         }
     }
 
-    public override void OnGUI()
-    {
-        if (!_initialized) return;
-        HexviewerFeature.OnGui();
-    }
-
     public override void OnUpdate()
     {
+        if (_disabled) return;
         if (!_initialized)
         {
             TryInitialize();
@@ -65,7 +68,6 @@ public sealed class HexViewerMod : MelonMod
         }
 
         HexviewerFeature.Update();
-        HexviewerFeature.UpdateHud();
     }
 
     public override void OnDeinitializeMelon()
