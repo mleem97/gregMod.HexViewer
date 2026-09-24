@@ -2,7 +2,7 @@ using Il2Cpp;
 using MelonLoader;
 using System;
 
-[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "1.0.9", "mleem97")]
+[assembly: MelonInfo(typeof(GregModHexViewer.HexViewerMod), "gregMod.HexViewer", "2.0.0", "mleem97")]
 [assembly: MelonGame("Waseku", "Data Center")]
 
 namespace GregModHexViewer;
@@ -45,7 +45,7 @@ public sealed class HexViewerMod : MelonMod
         try
         {
             gregCore.Core.Mods.GregModRegistry.Register(
-                "gregMod.HexViewer", "HexViewer", "1.0.9",
+                "gregMod.HexViewer", "HexViewer", "2.0.0",
                 new string[] { "hexviewer" });
             gregCore.UI.GregHudRegistry.Register("hexviewer",
                 HexviewerFeature.ToggleKeyLabel, "Hex");

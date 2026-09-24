@@ -2,10 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/de/1.0.0/). Version: see [`VERSION`](VERSION).
 
-## [1.0.9] — 2026-09-24
+## [2.0.0] — 2026-09-24
 
 ### Changed
 
+- **Breaking:** hard dependency on gregCore (introduced in 1.0.8, now
+  correctly versioned as major). Without `gregCore.dll` the mod stays
+  disabled with a clear error — no standalone fallback anymore.
 - English strings and docs.
 
 ## [1.0.8] — 2026-09-24
