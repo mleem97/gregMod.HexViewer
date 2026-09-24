@@ -50,7 +50,7 @@ internal static class HexviewerFeature
         try { if (GregHost.HasCore) ReportOpenState(); } catch { /* best-effort */ }
     }
 
-    // Separate Methode (JIT-Trennung): meldet den Panel-Status ans F1-Hub.
+    // Separate method (JIT split): reports panel state to F1 hub.
     private static void ReportOpenState()
     {
         try { gregCore.UI.GregMenuRegistry.SetOpen("hexviewer", _visible); } catch { /* best-effort */ }

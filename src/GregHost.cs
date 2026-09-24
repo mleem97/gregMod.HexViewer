@@ -2,9 +2,9 @@ using System;
 
 namespace GregModHexViewer;
 
-// Erkennt zur Laufzeit, ob gregCore vorhanden ist (reiner Typname-Lookup).
-// Methoden, die gregCore-Typen beruehren, duerfen NUR aufgerufen werden,
-// wenn HasCore true ist (sonst JIT-TypeLoad bei fehlender DLL).
+// Detects at runtime whether gregCore is present (type-name lookup only).
+// Methods touching gregCore types must ONLY be called
+// if HasCore is true (else JIT TypeLoad without DLL).
 internal static class GregHost
 {
     private const string ProbeType = "gregCore.UI.GregNotificationManager, gregCore";

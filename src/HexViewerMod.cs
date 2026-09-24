@@ -30,8 +30,8 @@ public sealed class HexViewerMod : MelonMod
         }
     }
 
-    // Mod-Vertrag + Tasten-HUD + Oeffner fuers F1-Hub. Nur mit gregCore
-    // aufrufen (eigene Methode wegen JIT-Trennung ohne gregCore-DLL).
+    // Mod contract + key HUD + opener for F1 hub. Call only with gregCore
+    // (own method for JIT split without gregCore DLL).
     private void RegisterCoreExtras()
     {
         try
@@ -48,7 +48,7 @@ public sealed class HexViewerMod : MelonMod
         }
         catch (System.Exception ex)
         {
-            MelonLogger.Warning("[HexViewer] Hub-Registrierung fehlgeschlagen: " + ex.GetBaseException().Message);
+            MelonLogger.Warning("[HexViewer] Hub registration failed: " + ex.GetBaseException().Message);
         }
     }
 

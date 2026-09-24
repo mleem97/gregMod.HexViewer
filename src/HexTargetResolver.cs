@@ -8,7 +8,7 @@ internal static class HexTargetResolver
 {
     private const float MaxRayDistance = 48f;
 
-    /// <param name="aimDetailSuffix">Text after "Anvisiert ·", e.g. <c>Kabelrolle · RJ</c> or <c>Rack · Colored</c>.</param>
+    /// <param name="aimDetailSuffix">Text after "Aimed ·", e.g. <c>Cable spool · RJ</c> or <c>Rack · Colored</c>.</param>
     public static bool TryGetAimedColor(out string hex, out string aimDetailSuffix)
     {
         hex = null;
@@ -27,7 +27,7 @@ internal static class HexTargetResolver
         {
             var p = GameObjectKindResolver.GetSpinnerPortKind(spinner);
             var shortPort = p != null ? CablePortKindUtil.ToShortPortLabel(p) : null;
-            aimDetailSuffix = shortPort != null ? $"Kabelrolle · {shortPort}" : "Kabelrolle";
+            aimDetailSuffix = shortPort != null ? $"Cable spool · {shortPort}" : "Cable spool";
             return true;
         }
 
