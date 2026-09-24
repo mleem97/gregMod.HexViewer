@@ -101,8 +101,8 @@ internal static class HeldCableKindResolver
         if (TryGetHeldCableHex(out hex))
         {
             kindLabel = string.IsNullOrEmpty(kind)
-                ? "Kabel"
-                : $"Kabel · {CablePortKindUtil.ToShortPortLabel(kind)}";
+                ? "Cable"
+                : $"Cable · {CablePortKindUtil.ToShortPortLabel(kind)}";
             return true;
         }
 
@@ -125,7 +125,7 @@ internal static class HeldCableKindResolver
         {
             var p = GameObjectKindResolver.GetSpinnerPortKind(sp);
             var shortPort = p != null ? CablePortKindUtil.ToShortPortLabel(p) : null;
-            kindLabel = shortPort != null ? $"Kabelrolle · {shortPort}" : "Kabelrolle";
+            kindLabel = shortPort != null ? $"Cable spool · {shortPort}" : "Cable spool";
             return true;
         }
 
@@ -144,7 +144,7 @@ internal static class HeldCableKindResolver
             {
                 var p = GameObjectKindResolver.GetSpinnerPortKind(s);
                 var shortPort = p != null ? CablePortKindUtil.ToShortPortLabel(p) : null;
-                kindLabel = shortPort != null ? $"Kabelrolle · {shortPort}" : "Kabelrolle";
+                kindLabel = shortPort != null ? $"Cable spool · {shortPort}" : "Cable spool";
                 return true;
             }
         }
@@ -164,7 +164,7 @@ internal static class HeldCableKindResolver
             {
                 var p = GameObjectKindResolver.GetSpinnerPortKind(s);
                 var shortPort = p != null ? CablePortKindUtil.ToShortPortLabel(p) : null;
-                kindLabel = shortPort != null ? $"Kabelrolle · {shortPort}" : "Kabelrolle";
+                kindLabel = shortPort != null ? $"Cable spool · {shortPort}" : "Cable spool";
                 return true;
             }
         }
